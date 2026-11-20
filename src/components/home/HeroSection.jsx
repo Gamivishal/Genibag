@@ -6,25 +6,25 @@ import {
   CheckCircle2,
   FileCheck,
   TrendingUp,
-  Users,
-  Award,
   Sparkles,
+  Award,
+  Lock,
 } from 'lucide-react';
 import { siteConfig } from '../../data/siteConfig';
 
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden pt-8 pb-16 md:pt-14 md:pb-24 bg-gradient-to-b from-warm-grey via-white to-warm-grey">
-      {/* Subtle decorative background accents using theme tokens */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-primary-light/40 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-teal-light/50 blur-3xl pointer-events-none" />
+      {/* Decorative ambient lighting meshes */}
+      <div className="absolute top-0 right-0 -mr-24 -mt-24 w-[420px] h-[420px] rounded-full bg-primary-light/40 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 -ml-24 -mb-24 w-[420px] h-[420px] rounded-full bg-teal-light/50 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Hero Copy & Actions (7 cols) */}
           <div className="lg:col-span-7 space-y-6 text-left">
             {/* Top Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-primary-light border border-primary/20 text-xs font-semibold text-primary">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-primary-light border border-primary/20 text-xs font-semibold text-primary shadow-card">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               <span>{siteConfig.brand.businessLine}</span>
               <span className="text-primary/40">•</span>
@@ -42,21 +42,21 @@ export default function HeroSection() {
             {/* Subheading / Value Statement */}
             <p className="text-base sm:text-lg text-navy-muted leading-relaxed max-w-2xl">
               We help growing organisations turn people processes into clear,
-              consistent and review-ready practices. Protect your business,
+              consistent, and review-ready practices. Protect your business,
               support your employees, and give leadership actionable clarity.
             </p>
 
             {/* Slide 01 Badges: Compliance Snapshot */}
             <div className="flex flex-wrap items-center gap-3 pt-1">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-brand bg-white border border-warm-border text-xs font-medium text-navy shadow-card">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-brand bg-white border border-warm-border text-xs font-medium text-navy shadow-card hover:border-green/40 transition-colors">
                 <CheckCircle2 className="w-4 h-4 text-green" />
                 <span>People Records</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-brand bg-white border border-warm-border text-xs font-medium text-navy shadow-card">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-brand bg-white border border-warm-border text-xs font-medium text-navy shadow-card hover:border-teal/40 transition-colors">
                 <CheckCircle2 className="w-4 h-4 text-teal" />
                 <span>Policies &amp; Process</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-brand bg-white border border-warm-border text-xs font-medium text-navy shadow-card">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-brand bg-white border border-warm-border text-xs font-medium text-navy shadow-card hover:border-primary/40 transition-colors">
                 <CheckCircle2 className="w-4 h-4 text-primary" />
                 <span>Risk &amp; Action Plan</span>
               </span>
@@ -80,13 +80,21 @@ export default function HeroSection() {
               </a>
             </div>
 
-            {/* Micro reassurance strip */}
-            <p className="text-xs text-navy-muted pt-1 flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
-              <span>
-                Practical, proportionate and people-aware HR governance. Zero disruption guarantee.
+            {/* Trust reassurance pills */}
+            <div className="pt-2 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-navy-muted">
+              <span className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
+                <span>Zero Disruption Guarantee</span>
               </span>
-            </p>
+              <span className="flex items-center gap-1.5">
+                <Lock className="w-4 h-4 text-primary shrink-0" />
+                <span>100% Confidential Handling</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Award className="w-4 h-4 text-blue shrink-0" />
+                <span>Evidence-Led Methodology</span>
+              </span>
+            </div>
           </div>
 
           {/* Right Column: Visual Compliance Snapshot Card (5 cols) */}
@@ -114,7 +122,7 @@ export default function HeroSection() {
                   </span>
                 </div>
 
-                {/* 4 Interactive Feature Highlights */}
+                {/* 3 Interactive Feature Highlights */}
                 <div className="space-y-3">
                   <div className="p-3 rounded-brand bg-warm-grey/70 border border-warm-border hover:border-primary/40 transition-colors flex items-start gap-3">
                     <div className="w-7 h-7 rounded-brand-sm bg-primary-light text-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
@@ -160,13 +168,13 @@ export default function HeroSection() {
                 </div>
 
                 {/* Deliverable Callout Card */}
-                <div className="p-3.5 rounded-brand bg-navy text-white flex items-center justify-between gap-3">
+                <div className="p-3.5 rounded-brand bg-navy text-white flex items-center justify-between gap-3 shadow-soft">
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-primary block">
-                      Immediate Outcome
+                      Immediate Output
                     </span>
                     <p className="text-xs font-medium text-white/90">
-                      Risk-prioritised Action Tracker
+                      Risk-Prioritised Action Tracker
                     </p>
                   </div>
                   <Link
