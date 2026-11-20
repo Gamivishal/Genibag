@@ -1,213 +1,284 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import {
-  ShieldCheck,
-  ArrowRight,
+  ArrowUpRight,
+  ArrowDown,
+  ChevronLeft,
+  ChevronRight,
   CheckCircle2,
-  FileCheck,
-  TrendingUp,
-  Sparkles,
-  Award,
-  Lock,
 } from 'lucide-react';
 import { siteConfig } from '../../data/siteConfig';
 
-export default function HeroSection() {
+// Dedicated brand SVG icons for the vertical follow strip
+function LinkedInIcon(props) {
   return (
-    <section className="relative overflow-hidden pt-8 pb-16 md:pt-14 md:pb-24 bg-gradient-to-b from-warm-grey via-white to-warm-grey">
-      {/* Decorative ambient lighting meshes */}
-      <div className="absolute top-0 right-0 -mr-24 -mt-24 w-[420px] h-[420px] rounded-full bg-primary-light/40 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -ml-24 -mb-24 w-[420px] h-[420px] rounded-full bg-teal-light/50 blur-3xl pointer-events-none" />
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" {...props}>
+      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.79v8.37H6.46v-8.37M7.86 6.31a1.63 1.63 0 0 0-1.63 1.63c0 .9.73 1.63 1.63 1.63.9 0 1.63-.73 1.63-1.63 0-.9-.73-1.63-1.63-1.63Z" />
+    </svg>
+  );
+}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left Column: Hero Copy & Actions (7 cols) */}
-          <div className="lg:col-span-7 space-y-6 text-left">
-            {/* Top Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-primary-light border border-primary/20 text-xs font-semibold text-primary shadow-card">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              <span>{siteConfig.brand.businessLine}</span>
-              <span className="text-primary/40">•</span>
-              <span className="text-navy">{siteConfig.brand.subtitle}</span>
-            </div>
+function FacebookIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" {...props}>
+      <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95C18.05 21.45 22 17.19 22 12Z" />
+    </svg>
+  );
+}
 
-            {/* Main Heading */}
-            <h1 className="text-3xl sm:text-5xl lg:text-5xl font-heading font-bold text-navy tracking-tight leading-[1.15]">
-              Clarity for your people.{' '}
-              <span className="text-primary block sm:inline">
-                Confidence for your business.
-              </span>
-            </h1>
+function InstagramIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="14"
+      height="14"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
 
-            {/* Subheading / Value Statement */}
-            <p className="text-base sm:text-lg text-navy-muted leading-relaxed max-w-2xl">
-              We help growing organisations turn people processes into clear,
-              consistent, and review-ready practices. Protect your business,
-              support your employees, and give leadership actionable clarity.
-            </p>
+function XIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" {...props}>
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
 
-            {/* Slide 01 Badges: Compliance Snapshot */}
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-brand bg-white border border-warm-border text-xs font-medium text-navy shadow-card hover:border-green/40 transition-colors">
-                <CheckCircle2 className="w-4 h-4 text-green" />
-                <span>People Records</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-brand bg-white border border-warm-border text-xs font-medium text-navy shadow-card hover:border-teal/40 transition-colors">
-                <CheckCircle2 className="w-4 h-4 text-teal" />
-                <span>Policies &amp; Process</span>
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-brand bg-white border border-warm-border text-xs font-medium text-navy shadow-card hover:border-primary/40 transition-colors">
-                <CheckCircle2 className="w-4 h-4 text-primary" />
-                <span>Risk &amp; Action Plan</span>
-              </span>
-            </div>
+/**
+ * Hero Section matching the Bixoo corporate consulting pattern:
+ * - High-impact full-bleed slider with background imagery and dark overlay
+ * - Vertical social follow strip on left
+ * - Arrow navigation controls (prev/next) & slide indicator dots
+ * - Bold split-color typography with primary accent
+ * - Dual action buttons (Primary CTA with up-right arrow + Glassmorphism button)
+ */
+export default function HeroSection() {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-            {/* Action Buttons */}
-            <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <a
-                href="#consultation-form"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-base font-semibold text-white bg-primary hover:bg-primary-hover active:bg-primary-dark rounded-brand shadow-soft hover:shadow-soft-md transition-all duration-200 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 outline-none"
-              >
-                <span>Book a Consultation</span>
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
+  const slides = [
+    {
+      id: 1,
+      bg: '/bixoo/hero-bg.jpg',
+      badge: 'GENIE BAG HR CONSULTANCY • THE MANAGEMENT BASKET',
+      titlePart1: 'Clarity for ',
+      titleHighlight: 'Your People.',
+      titlePart2: 'Confidence for ',
+      titleBold: 'Your Business.',
+      description:
+        'We help organisations turn people processes into clear, consistent and review-ready HR practices through structured compliance audits and actionable advisory.',
+      checks: [
+        'People Records',
+        'Policies & Process',
+        'Risk & Action Plan',
+      ],
+      primaryBtn: 'Schedule an HR Audit',
+      secondaryBtn: 'Explore Audit Scope',
+      primaryHref: '#consultation-form',
+      secondaryHref: '#services-section',
+    },
+    {
+      id: 2,
+      bg: '/bixoo/hero-bg2.jpg',
+      badge: 'HR COMPLIANCE & PROCESS AUDIT • PROPORTIONATE GOVERNANCE',
+      titlePart1: 'Practical, Proportionate ',
+      titleHighlight: 'HR Governance',
+      titlePart2: 'Tailored to ',
+      titleBold: 'Your Workplace.',
+      description:
+        'From discovery to a practical action plan. We give leadership a clear, evidence-based view of risks, priorities, and corrective actions—not just a stack of documents.',
+      checks: [
+        'Independent Review',
+        'Risk Prioritisation',
+        'Actionable Roadmaps',
+      ],
+      primaryBtn: 'Book a Consultation',
+      secondaryBtn: 'See Our Approach',
+      primaryHref: '#consultation-form',
+      secondaryHref: '#methodology-section',
+    },
+  ];
 
-              <a
-                href="#services-section"
-                className="inline-flex items-center justify-center px-6 py-3.5 text-base font-medium text-navy bg-white hover:bg-warm-grey border border-warm-border rounded-brand shadow-card hover:border-navy-muted/40 transition-colors duration-200"
-              >
-                Explore 6 Services
-              </a>
-            </div>
+  // Auto-advance slides every 7 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === 0 ? 1 : 0));
+    }, 7000);
+    return () => clearInterval(timer);
+  }, []);
 
-            {/* Trust reassurance pills */}
-            <div className="pt-2 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-navy-muted">
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-teal shrink-0" />
-                <span>Zero Disruption Guarantee</span>
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Lock className="w-4 h-4 text-primary shrink-0" />
-                <span>100% Confidential Handling</span>
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Award className="w-4 h-4 text-blue shrink-0" />
-                <span>Evidence-Led Methodology</span>
-              </span>
-            </div>
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? 1 : 0));
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? 1 : 0));
+  };
+
+  const slide = slides[currentSlide];
+
+  return (
+    <section className="relative min-h-[640px] lg:min-h-[720px] flex items-center overflow-hidden bg-navy">
+      {/* Background Slides with smooth fade transition */}
+      {slides.map((s, idx) => (
+        <div
+          key={s.id}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            idx === currentSlide ? 'opacity-100 z-0' : 'opacity-0 -z-10'
+          }`}
+        >
+          <img
+            src={s.bg}
+            alt="Corporate HR Consulting"
+            className="w-full h-full object-cover object-center scale-105 transition-transform duration-10000"
+          />
+          {/* Dark scrim overlay matching Bixoo */}
+          <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/90 to-navy/80" />
+        </div>
+      ))}
+
+      {/* Vertical Social Strip on Left (Bixoo Signature Pattern) */}
+      <div className="hidden xl:flex fixed-or-absolute left-8 top-1/2 -translate-y-1/2 z-20 flex-col items-center gap-4 text-white/60">
+        <span className="w-px h-16 bg-white/20" />
+        <a
+          href={siteConfig.socialLinks[0].href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          className="hover:text-primary transition-colors hover:scale-110 p-1"
+        >
+          <LinkedInIcon />
+        </a>
+        <a
+          href={siteConfig.socialLinks[1].href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+          className="hover:text-primary transition-colors hover:scale-110 p-1"
+        >
+          <FacebookIcon />
+        </a>
+        <a
+          href={siteConfig.socialLinks[2].href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          className="hover:text-primary transition-colors hover:scale-110 p-1"
+        >
+          <InstagramIcon />
+        </a>
+        <a
+          href={siteConfig.socialLinks[3].href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="X (Twitter)"
+          className="hover:text-primary transition-colors hover:scale-110 p-1"
+        >
+          <XIcon />
+        </a>
+        <span className="text-[10px] font-bold tracking-widest uppercase rotate-90 my-4 text-white/40">
+          FOLLOW
+        </span>
+      </div>
+
+      {/* Main Hero Content Container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative z-10 w-full text-left">
+        <div className="max-w-3xl space-y-6">
+          {/* Sub-title badge */}
+          <div className="inline-block">
+            <span className="text-xs sm:text-sm font-bold tracking-wider uppercase text-primary bg-primary/10 px-3.5 py-1.5 rounded-full border border-primary/20 backdrop-blur-sm">
+              {slide.badge}
+            </span>
           </div>
 
-          {/* Right Column: Visual Compliance Snapshot Card (5 cols) */}
-          <div className="lg:col-span-5">
-            <div className="relative">
-              {/* Outer decorative card frame */}
-              <div className="bg-white rounded-brand-xl shadow-soft-lg border border-warm-border p-6 sm:p-7 relative z-10 space-y-6">
-                {/* Header of Snapshot Card */}
-                <div className="flex items-center justify-between pb-4 border-b border-warm-border">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-brand bg-primary-light flex items-center justify-center text-primary font-bold">
-                      <FileCheck className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-heading font-semibold text-navy">
-                        Compliance Snapshot
-                      </h3>
-                      <p className="text-xs text-navy-muted">
-                        Evidence-Led Audit Framework
-                      </p>
-                    </div>
-                  </div>
-                  <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-green-light text-green border border-green/20">
-                    Active Readiness
-                  </span>
-                </div>
+          {/* Large Bold Heading */}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-white tracking-tight leading-[1.12]">
+            {slide.titlePart1}
+            <span className="text-primary">{slide.titleHighlight}</span>
+            <br />
+            {slide.titlePart2}
+            <b className="text-white font-bold">{slide.titleBold}</b>
+          </h1>
 
-                {/* 3 Interactive Feature Highlights */}
-                <div className="space-y-3">
-                  <div className="p-3 rounded-brand bg-warm-grey/70 border border-warm-border hover:border-primary/40 transition-colors flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-brand-sm bg-primary-light text-primary flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                      01
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-semibold text-navy">
-                        Labour Law &amp; Statutory Registers
-                      </h4>
-                      <p className="text-[11px] text-navy-muted leading-tight mt-0.5">
-                        Verification of mandatory notices, returns, and statutory records.
-                      </p>
-                    </div>
-                  </div>
+          {/* Description */}
+          <p className="text-base sm:text-lg text-white/80 leading-relaxed max-w-2xl">
+            {slide.description}
+          </p>
 
-                  <div className="p-3 rounded-brand bg-warm-grey/70 border border-warm-border hover:border-teal/40 transition-colors flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-brand-sm bg-teal-light text-teal flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                      02
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-semibold text-navy">
-                        People Files &amp; Joining-to-Exit
-                      </h4>
-                      <p className="text-[11px] text-navy-muted leading-tight mt-0.5">
-                        Complete review of appointment letters, KYC, and clearance trails.
-                      </p>
-                    </div>
-                  </div>
+          {/* 3 Checkmark Trust Badges */}
+          <div className="flex flex-wrap items-center gap-4 pt-2 text-white/90 text-sm font-semibold">
+            {slide.checks.map((item) => (
+              <span key={item} className="inline-flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-teal shrink-0" />
+                <span>{item}</span>
+              </span>
+            ))}
+          </div>
 
-                  <div className="p-3 rounded-brand bg-warm-grey/70 border border-warm-border hover:border-blue/40 transition-colors flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-brand-sm bg-blue-light text-blue flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
-                      03
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-semibold text-navy">
-                        Time, Pay &amp; POSH Governance
-                      </h4>
-                      <p className="text-[11px] text-navy-muted leading-tight mt-0.5">
-                        Attendance reconciliations, salary structures, and ICC policy checks.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+          {/* Dual Action Buttons (Bixoo Signature Style) */}
+          <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            {/* Primary Orange Button */}
+            <a
+              href={slide.primaryHref}
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-4 text-sm font-semibold text-white bg-primary hover:bg-primary-hover active:bg-primary-dark rounded-brand shadow-soft hover:shadow-soft-md transition-all duration-200 group"
+            >
+              <span>{slide.primaryBtn}</span>
+              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
 
-                {/* Deliverable Callout Card */}
-                <div className="p-3.5 rounded-brand bg-navy text-white flex items-center justify-between gap-3 shadow-soft">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-primary block">
-                      Immediate Output
-                    </span>
-                    <p className="text-xs font-medium text-white/90">
-                      Risk-Prioritised Action Tracker
-                    </p>
-                  </div>
-                  <Link
-                    to="/approach"
-                    className="text-xs font-semibold text-primary hover:text-primary-hover flex items-center gap-1 shrink-0"
-                  >
-                    <span>View Method</span>
-                    <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </div>
-
-                {/* Bottom Stats Grid */}
-                <div className="grid grid-cols-3 gap-2 pt-2 border-t border-warm-border text-center">
-                  <div className="p-2">
-                    <div className="text-lg font-heading font-bold text-navy">6</div>
-                    <div className="text-[10px] text-navy-muted">Core Modules</div>
-                  </div>
-                  <div className="p-2 border-x border-warm-border">
-                    <div className="text-lg font-heading font-bold text-teal">100%</div>
-                    <div className="text-[10px] text-navy-muted">Evidence-Led</div>
-                  </div>
-                  <div className="p-2">
-                    <div className="text-lg font-heading font-bold text-primary">0%</div>
-                    <div className="text-[10px] text-navy-muted">Disruption</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Decorative background drop card */}
-              <div className="absolute -bottom-3 -right-3 w-full h-full rounded-brand-xl bg-primary/10 -z-0" />
-            </div>
+            {/* Ghost Glassmorphic Button */}
+            <a
+              href={slide.secondaryHref}
+              className="inline-flex items-center justify-center gap-2.5 px-7 py-4 text-sm font-semibold text-white bg-white/10 hover:bg-white/20 active:bg-white/25 border border-white/30 backdrop-blur-md rounded-brand transition-all duration-200 group"
+            >
+              <span>{slide.secondaryBtn}</span>
+              <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
+            </a>
           </div>
         </div>
+      </div>
+
+      {/* Prev / Next Array Buttons (Right Edge or Bottom) */}
+      <div className="absolute bottom-8 right-8 z-20 hidden sm:flex items-center gap-3">
+        <button
+          type="button"
+          onClick={prevSlide}
+          aria-label="Previous Slide"
+          className="w-12 h-12 rounded-full bg-white/10 hover:bg-primary text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <button
+          type="button"
+          onClick={nextSlide}
+          aria-label="Next Slide"
+          className="w-12 h-12 rounded-full bg-white/10 hover:bg-primary text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Slide Indicators on Bottom Center */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+        {slides.map((_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            onClick={() => setCurrentSlide(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              idx === currentSlide ? 'w-8 bg-primary' : 'w-2 bg-white/40 hover:bg-white/70'
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
