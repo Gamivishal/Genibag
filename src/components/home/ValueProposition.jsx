@@ -6,6 +6,7 @@ import { siteConfig } from '../../data/siteConfig';
  * About Section matching Bixoo's `about-section`:
  * - Left side: Feature photography with overlapping floating corporate card
  * - Right side: Subtitle with icon, split heading, and descriptive copy
+ * - Bixoo float-bob-y floating decorative shape
  * - Bottom: 3 Feature boxes with 55px icon badges and tinted backgrounds
  */
 export default function ValueProposition() {
@@ -43,8 +44,17 @@ export default function ValueProposition() {
   ];
 
   return (
-    <section id="about" className="py-16 md:py-24 bg-warm-grey border-b border-warm-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-16 md:py-24 bg-warm-grey border-b border-warm-border relative overflow-hidden">
+      {/* Floating Decorative Shape (Bixoo float-bob-y effect) */}
+      <div className="hidden lg:block absolute top-12 right-12 z-0 animate-float-y pointer-events-none opacity-40">
+        <img
+          src="/bixoo/about-shape-1.png"
+          alt=""
+          className="w-32 h-auto object-contain filter drop-shadow"
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Top 2-Column Area: Photo + Overlapping Card on Left, Narrative on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           {/* Left Column: Image with Overlapping Floating Card (5 cols) */}

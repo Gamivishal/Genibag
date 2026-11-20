@@ -56,6 +56,7 @@ function XIcon(props) {
 /**
  * Hero Section matching the Bixoo corporate consulting pattern:
  * - High-impact full-bleed slider with background imagery and dark overlay
+ * - Bixoo float-bob-x floating shape decoration
  * - Vertical social follow strip on left
  * - Arrow navigation controls (prev/next) & slide indicator dots
  * - Bold split-color typography with primary accent
@@ -144,6 +145,15 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/90 to-navy/80" />
         </div>
       ))}
+
+      {/* Floating Shape Decoration (Bixoo float-bob-x effect) */}
+      <div className="hidden lg:block absolute right-16 top-1/3 z-10 animate-float-x pointer-events-none opacity-80">
+        <img
+          src="/bixoo/icon/hero-shape-1.png"
+          alt=""
+          className="w-20 sm:w-28 h-auto object-contain filter drop-shadow-lg"
+        />
+      </div>
 
       {/* Vertical Social Strip on Left (Bixoo Signature Pattern) */}
       <div className="hidden xl:flex fixed-or-absolute left-8 top-1/2 -translate-y-1/2 z-20 flex-col items-center gap-4 text-white/60">

@@ -68,6 +68,25 @@ export default {
         dropdown: '0 14px 36px -4px rgba(30, 36, 51, 0.15)',
         card: '0 2px 12px rgba(30, 36, 51, 0.04)',
       },
+      animation: {
+        'marquee': 'marquee 30s linear infinite',
+        'float-x': 'floatX 3.5s ease-in-out infinite',
+        'float-y': 'floatY 3.5s ease-in-out infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        floatX: {
+          '0%, 100%': { transform: 'translateX(0px)' },
+          '50%': { transform: 'translateX(25px)' },
+        },
+        floatY: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-18px)' },
+        },
+      },
     },
   },
   plugins: [],

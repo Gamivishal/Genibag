@@ -1,5 +1,6 @@
 import React from 'react';
 import HeroSection from '../components/home/HeroSection';
+import MarqueeTicker from '../components/home/MarqueeTicker';
 import CounterSection from '../components/home/CounterSection';
 import ValueProposition from '../components/home/ValueProposition';
 import ServicesSection from '../components/home/ServicesSection';
@@ -20,76 +21,80 @@ import FloatingActionHub from '../components/home/FloatingActionHub';
 /**
  * Premium Home Page for Geniebag Solutions
  * Perfectly styled with Bixoo Corporate Consulting patterns & 12-slide HR presentation content:
- * - 01. Bixoo Hero Section (Full-bleed slider, dark overlay, vertical social bar, dual buttons)
- * - 02. Bixoo Counter Section (100% Statutory Scope, 6-Stage Method, 3 Tiers, 0 Disruption)
- * - 03. Bixoo About Section (Feature photo + Overlapping corporate card + 3 Pillar boxes)
- * - 04. Modular Services Grid & Compliance Lens (Slide 03 & 04)
- * - 05. Interactive 60-Second Compliance Health Estimator
- * - 06. 6-Step Audit Methodology & 4 Core Promises (Slide 05)
- * - 07. What We Examine / Scope Matrix Tabs (Slide 06)
- * - 08. Deliverables Showcase / 6 Tangible Outputs (Slide 07)
- * - 09. Bixoo Choose Us Section (What You Get vs How We Work - Slide 08)
- * - 10. Before vs After Transformation Showcase
- * - 11. Sample Findings & Risk Priority Matrix (Slide 09)
- * - 12. Flexible Engagement Tiers (Slide 10)
- * - 13. Bixoo High-Impact Gradient CTA Banner
- * - 14. A Good Partnership & Statutory Boundaries (Slide 11)
- * - 15. FAQ Accordion Section
- * - 16. Consultation Booking & Scoping Form (Slide 12)
- * - 17. Floating Action Hub (Back to Top & Quick FAB)
+ * - 01. Bixoo Hero Section (Full-bleed slider, dark overlay, vertical social bar, dual buttons, float-bob-x)
+ * - 02. Bixoo Infinite Marquee Ticker (Continuous glassmorphic service pills)
+ * - 03. Bixoo Stats Counter Section (100% Statutory Scope, 6-Stage Method, 3 Tiers, 0 Disruption)
+ * - 04. Bixoo About Section (Feature photo + Overlapping corporate card + 3 Pillar boxes + float-bob-y)
+ * - 05. 6 Modular Services Grid & Compliance Lens (Slide 03 & 04)
+ * - 06. Interactive 60-Second Compliance Health Estimator
+ * - 07. 6-Step Audit Methodology & 4 Core Promises (Slide 05)
+ * - 08. What We Examine / Scope Matrix Tabs (Slide 06)
+ * - 09. Deliverables Showcase / 6 Tangible Outputs (Slide 07)
+ * - 10. Bixoo Choose Us Section (What You Get vs How We Work - Slide 08)
+ * - 11. Before vs After Transformation Showcase
+ * - 12. Sample Findings & Risk Priority Matrix (Slide 09)
+ * - 13. Flexible Engagement Tiers (Slide 10)
+ * - 14. Bixoo High-Impact Gradient CTA Banner
+ * - 15. A Good Partnership & Statutory Boundaries (Slide 11)
+ * - 16. FAQ Accordion Section
+ * - 17. Consultation Booking & Scoping Form (Slide 12)
+ * - 18. Floating Action Hub (Back to Top & Quick FAB)
  */
 export default function Home() {
   return (
     <div className="flex-1 flex flex-col relative">
-      {/* 01. Bixoo Signature Hero Section */}
+      {/* 01. Bixoo Signature Hero Section with float-bob-x */}
       <HeroSection />
 
-      {/* 02. Bixoo Stats Counter Section */}
+      {/* 02. Bixoo Signature Infinite Marquee Ticker */}
+      <MarqueeTicker />
+
+      {/* 03. Bixoo Stats Counter Section */}
       <CounterSection />
 
-      {/* 03. Bixoo About Section (3 Pillars + Photography) */}
+      {/* 04. Bixoo About Section with float-bob-y */}
       <ValueProposition />
 
-      {/* 04. 6 Modular Services Grid */}
+      {/* 05. 6 Modular Services Grid */}
       <ServicesSection />
 
-      {/* 05. Interactive 60-Second Compliance Health Estimator */}
+      {/* 06. Interactive 60-Second Compliance Health Estimator */}
       <ComplianceEstimator />
 
-      {/* 06. 6-Step Audit Methodology & 4 Promises */}
+      {/* 07. 6-Step Audit Methodology & 4 Promises */}
       <AuditMethodology />
 
-      {/* 07. What We Examine / Operating System Checklist */}
+      {/* 08. What We Examine / Operating System Checklist */}
       <WhatWeExamine />
 
-      {/* 08. 6 Concrete Deliverables Showcase */}
+      {/* 09. 6 Concrete Deliverables Showcase */}
       <DeliverablesSection />
 
-      {/* 09. Bixoo Choose Us (What You Get vs How We Work) */}
+      {/* 10. Bixoo Choose Us (What You Get vs How We Work) */}
       <ChooseUsSection />
 
-      {/* 10. Before vs After Transformation Showcase */}
+      {/* 11. Before vs After Transformation Showcase */}
       <BeforeAfterComparison />
 
-      {/* 11. Sample Findings & Risk Priority Matrix */}
+      {/* 12. Sample Findings & Risk Priority Matrix */}
       <SampleFindingsSection />
 
-      {/* 12. Flexible Engagement Models */}
+      {/* 13. Flexible Engagement Models */}
       <EngagementModels />
 
-      {/* 13. Bixoo High-Impact Gradient CTA Banner */}
+      {/* 14. Bixoo High-Impact Gradient CTA Banner */}
       <CTABanner />
 
-      {/* 14. A Good Partnership & Mutual Commitments */}
+      {/* 15. A Good Partnership & Mutual Commitments */}
       <PartnershipCommitment />
 
-      {/* 15. Frequently Asked Questions (FAQ) */}
+      {/* 16. Frequently Asked Questions (FAQ) */}
       <FAQSection />
 
-      {/* 16. Consultation Booking Form */}
+      {/* 17. Consultation Booking Form */}
       <ConsultationCTA />
 
-      {/* 17. Floating Action Hub */}
+      {/* 18. Floating Action Hub */}
       <FloatingActionHub />
     </div>
   );
